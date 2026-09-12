@@ -1,32 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      overflow: hidden;
-    }
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0,
+                   maximum-scale=1.0,
+                   user-scalable=no">
 
-    video {
-      width: 100vw;
-      height: 100vh;
-      object-fit: contain;
-    }
-  </style>
+    <title>Video QR</title>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            object-fit: contain;
+
+            background: #000;
+        }
+    </style>
 </head>
 
 <body>
 
-<video autoplay muted playsinline>
-  <source src="/videos/demo.mp4" type="video/mp4">
+<video
+    autoplay
+    muted
+    playsinline
+    controls="false">
+
+    <source src="video.mp4" type="video/mp4">
+
+    Tu navegador no soporta video HTML5.
+
 </video>
+
+<script>
+
+const video = document.querySelector("video");
+
+video.addEventListener("loadedmetadata", () => {
+    video.play().catch(() => {
+        console.log("Autoplay bloqueado por el navegador");
+    });
+});
+
+</script>
 
 </body>
 </html>
